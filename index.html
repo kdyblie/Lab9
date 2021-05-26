@@ -42,16 +42,16 @@
   </fieldset>
 
   <section id="error-btns">
-    <button>Console Log Demo</button>
-    <button>Console Error Demo</button>
-    <button>Console Dir</button>
-    <button>Console dirxml</button>
-    <button>Console Group Start</button>
-    <button>Console Group End</button>
-    <button>Console Table</button>
-    <button>Start Timer</button>
-    <button>End Timer</button>
-    <button>Console Trace</button>
+    <button type="consoleLog">Console Log Demo</button>
+    <button type="consoleError">Console Error Demo</button>
+    <button type="consoleDir">Console Dir</button>
+    <button type="consoleDirXML">Console dirxml</button>
+    <button type="consoleGroupStart">Console Group Start</button>
+    <button type="consoleGroupEnd">Console Group End</button>
+    <button type="consoleTable">Console Table</button>
+    <button type="consoleTimeStart">Start Timer</button>
+    <button type="consoleTimeEnd">End Timer</button>
+    <button type="consoleTrace">Console Trace</button>
     <button>Trigger a Global Error</button>
   </section>
 
@@ -67,6 +67,64 @@
 
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
     // TODO - Make buttons functional
+    
+    document.querySelector("[type = 'consoleLog']").addEventListener("click", () =>{
+      console.log("Console Log Demo Activated!");
+    });
+
+    document.querySelector("[type = 'consoleError']").addEventListener("click", () =>{
+      console.error("Console Error Demo Activated!");
+    });
+
+    document.querySelector("[type = 'consoleTable']").addEventListener("click", () =>{
+      console.table([
+        {
+          author: 'First',
+          first: 'Kevin',
+          last: 'Dyblie',
+        },
+        {
+          author: 'Second',
+          first: 'Ethan',
+          last: 'Lew',
+        }
+      ]);
+    });
+
+    document.querySelector("[type = 'consoleDir']").addEventListener("click", () =>{
+      console.dir(document.body);
+    });
+
+    document.querySelector("[type = 'consoleDirXML']").addEventListener("click", () =>{
+      console.dirxml(document);
+    });
+
+    const label = 'Log Group';
+    document.querySelector("[type = 'consoleGroupStart']").addEventListener("click", () =>{
+      console.group(label);
+    });
+
+    document.querySelector("[type = 'consoleGroupEnd']").addEventListener("click", () =>{
+      console.log("End of Group");
+      console.groupEnd(label);
+    });
+
+    document.querySelector("[type = 'consoleTimeStart']").addEventListener("click", () =>{
+      console.time();
+    });
+
+    document.querySelector("[type = 'consoleTimeEnd']").addEventListener("click", () =>{
+      console.timeEnd();
+    });
+
+    document.querySelector("[type = 'consoleTrace']").addEventListener("click", () =>{
+      const BreakingBad = () => { ABQ() };
+      const ABQ = () => { over(); };
+      const over = () => { down(); };
+      const down = () => { sevenThirtySeven(); };
+      const sevenThirtySeven = () => { console.trace(); };
+      BreakingBad(); 
+    });
   </script>
 </body>
 </html>
