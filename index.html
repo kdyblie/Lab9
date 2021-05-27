@@ -37,6 +37,8 @@
     </select>
     <input type="number" name="second-num" id="second-num" />
     <button id="calculate">Calculate</button>
+    <button type="buttontest" onclick="myFunction()">Test Input</button>
+    <p id="errorMessage"></p>
     <br />
     <output></output>
   </fieldset>
@@ -125,6 +127,29 @@
       const sevenThirtySeven = () => { console.trace(); };
       BreakingBad(); 
     });
+
+  class DivisionByZeroError extends Error {
+    constructor(message) {
+      super(message);
+      this.name = "DivisionByZeroError";
+    }
+  }
+
+  function myFunction() {
+    var errorMessage, x;
+    errorMessage = document.getElementById("errorMessage");
+    errorMessage.innerHTML = "";
+    x = document.querySelector('#second-num').value;
+    let operator = document.querySelector('#operator').value;
+    try {
+      if(x == 0 && operator == "/") throw new DivisionByZeroError("Cannot divide by 0");
+    }
+    catch(err) {
+      errorMessage.innerHTML = err;
+    }  finally {
+      alert('Test if input is valid arithmetic');
+    }
+  }
   </script>
 </body>
 </html>
