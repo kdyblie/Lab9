@@ -167,7 +167,9 @@
 
     document.querySelector("[type = 'globalError']").addEventListener("click", () =>{
       console.log("Sadly an error happened friend");
-      window.onerror;
+      window.onerror = function() {
+        window.TrackJS && TrackJS.track("State.property should be positive");
+      }
     });
   </script>
 </body>
